@@ -58,8 +58,7 @@ hl.bind("ALT + Tab", function()
 end)
 
 ---- hot reload ----
-
-hl.bind("CTRL + SUPER + ALT + R", hl.dsp.reload_config(), { release = true })
+--hl.bind("CTRL + SUPER + ALT + R", hl.dsp.reload_config(), { release = true })
 
 ---- Media ----
 
