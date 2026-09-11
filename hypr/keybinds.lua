@@ -3,7 +3,7 @@
 -- terminal
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("foot"))
 -- start menu / drun
-hl.bind("Super_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
+hl.bind("SUPER + Super_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
 -- clipboard history
 hl.bind("SUPER + V", hl.dsp.exec_cmd(
     [[pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy]]))
