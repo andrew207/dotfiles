@@ -46,8 +46,9 @@ backup_path() {
 }
 
 copy_file() {
-    # $1 = path under $ROOT/hypr, $2 = mode ("644"|"755")
-    local rel="$1" mode="${2:-644}" src="$ROOT/hypr/$1" dest
+    # $1 = dest path under ~/.config/hypr, $2 = mode ("644"|"755"),
+    # $3 = source path under $ROOT (defaults to hypr/$1)
+    local rel="$1" mode="${2:-644}" src="$ROOT/${3:-hypr/$1}" dest
     dest="$HOME/.config/hypr/$rel"
     if [[ -f "$dest" ]] && cmp -s "$src" "$dest"; then
         return 0
@@ -87,6 +88,11 @@ apply_hyprland() {
     shopt -s nullglob
     for f in "$ROOT"/hypr/hyprlock/*.sh; do
         copy_file "hyprlock/${f##*/}" 755
+    done
+    # Helper scripts live at repo root but install under ~/.config/hypr/scripts,
+    # which is the path keybinds.lua invokes them by.
+    for f in "$ROOT"/scripts/*.sh; do
+        copy_file "scripts/${f##*/}" 755 "scripts/${f##*/}"
     done
     [[ $reset_nullglob -eq 1 ]] && shopt -u nullglob
 

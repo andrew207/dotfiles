@@ -15,8 +15,12 @@ hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd(
     [[grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png"]]))
 -- Screen snip >> Save >> clipboard
 hl.bind("Print", hl.dsp.exec_cmd(
-    [[mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png]]),
+    [[mkdir -p ~/Pictures/Screenshots && ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png]]),
     { locked = true })
+-- Screen recording (toggle: same bind stops an in-progress recording).
+-- Saves to the XDG videos dir. ALT variant also captures desktop audio.
+hl.bind("SUPER + SHIFT + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record-script.sh"))
+hl.bind("SUPER + SHIFT + ALT + R", hl.dsp.exec_cmd("~/.config/hypr/scripts/record-script.sh --sound"))
 -- Lock
 hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"))
 -- kill
