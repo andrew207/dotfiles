@@ -2,9 +2,6 @@ hl.on("hyprland.start", function()
     -- Bar
     hl.exec_cmd("waybar")
 
-    -- Input method
-    hl.exec_cmd("fcitx5")
-
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 || /usr/libexec/polkit-gnome-authentication-agent-1")

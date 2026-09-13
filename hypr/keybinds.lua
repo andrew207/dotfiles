@@ -2,8 +2,9 @@
 
 -- terminal
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("foot"))
--- start menu / drun
-hl.bind("SUPER + Super_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
+-- start menu / drun. Bare keysym: with a keysym the keys are no longer
+-- treated as modifiers, so "SUPER + Super_L" would depend on press order.
+hl.bind("SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
 -- clipboard history
 hl.bind("SUPER + V", hl.dsp.exec_cmd(
     [[pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy]]))
