@@ -39,15 +39,14 @@
 			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
 			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
 		}
+	},
+	"actions": {
+		"on-click-right": "mode",
+		"on-click-forward": "tz_up",
+		"on-click-backward": "tz_down",
+		"on-scroll-up": "shift_up",
+		"on-scroll-down": "shift_down"
 	}
-},
-
-"actions": {
-	"on-click-right": "mode",
-	"on-click-forward": "tz_up",
-	"on-click-backward": "tz_down",
-	"on-scroll-up": "shift_up",
-	"on-scroll-down": "shift_down"
 },
 
 "cpu": {
@@ -80,9 +79,6 @@
 	"offscreen-css-text": "(inactive)",
 	"rewrite": {
 		"(.*) — Mozilla Firefox": " $1",
-		"(.*) - fish": "> [$1]",
-		"(.*) - zsh": "> [$1]",
-		"(.*) - $term": "> [$1]",
 	},
 },
 
@@ -136,18 +132,6 @@
 	"format-icons": [
 		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
 	]
-},
-
-"power-profiles-daemon": {
-  "format": "{icon} ",
-  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-  "tooltip": true,
-  "format-icons": {
-    "default": "",
-    "performance": "",
-    "balanced": "",
-    "power-saver": ""
-  }
 },
 
 "pulseaudio": {

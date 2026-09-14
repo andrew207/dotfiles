@@ -31,6 +31,19 @@ done
 
 log() { printf '%s\n' "$*"; }
 
+check_config() {
+    # $1 = binary, $2 = repo config to validate before installing it.
+    # No-op when the binary is absent or too old to know --check-config, so this
+    # can never block an apply on its own account.
+    local bin="$1" file="$2"
+    command -v "$bin" >/dev/null 2>&1 || return 0
+    "$bin" --help 2>&1 | grep -q -- --check-config || return 0
+    if ! "$bin" --check-config --config="$file"; then
+        echo "error: $bin rejected $file; not installing it" >&2
+        exit 1
+    fi
+}
+
 backup_path() {
     # $1 = path under $DEST_ROOT to relocate into the timestamped backup dir
     local rel="$1" src dest
@@ -45,6 +58,7 @@ backup_path() {
         mkdir -p "$(dirname "$dest")"
         mv "$src" "$dest"
         log "moved    $src -> $dest"
+        WRITTEN=$((WRITTEN + 1))
     fi
 }
 
@@ -85,7 +99,7 @@ install_link() {
         backup_path "$rel"
     fi
     if [[ $DRY_RUN -eq 1 ]]; then
-        log "[dry-run] link   $target -> $dest"
+        log "[dry-run] link   $dest -> $target"
     else
         mkdir -p "$(dirname "$dest")"
         ln -sfn "$target" "$dest"
@@ -136,7 +150,7 @@ apply_hyprland() {
     # Helper scripts live at repo root but install under ~/.config/hypr/scripts,
     # which is the path keybinds.lua invokes them by.
     for f in "$ROOT"/scripts/*.sh; do
-        copy_file "scripts/${f##*/}" 755 "scripts/${f##*/}"
+        copy_file "scripts/${f##*/}" 755 "$ROOT/scripts/${f##*/}"
     done
     [[ $reset_nullglob -eq 1 ]] && shopt -u nullglob
 
@@ -160,12 +174,14 @@ apply_hyprland() {
 apply_foot() {
     SRC_ROOT="$ROOT/foot"
     DEST_ROOT="$HOME/.config/foot"
+    check_config foot "$SRC_ROOT/foot.ini"
     copy_file foot.ini 644
 }
 
 apply_fuzzel() {
     SRC_ROOT="$ROOT/fuzzel"
     DEST_ROOT="$HOME/.config/fuzzel"
+    check_config fuzzel "$SRC_ROOT/fuzzel.ini"
     copy_file fuzzel.ini 644
 }
 
@@ -205,6 +221,7 @@ if pgrep -x waybar >/dev/null 2>&1; then
     fi
 fi
 log "note: foot/fuzzel changes only affect newly launched instances."
+log "note: pacman-q is a package manifest, not config; apply.sh does not install it."
 
 if [[ $DRY_RUN -eq 0 && $WRITTEN -gt 0 && -d "$BACKUP_DIR" ]]; then
     log "backups  $BACKUP_DIR"

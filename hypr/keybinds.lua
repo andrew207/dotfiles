@@ -2,8 +2,8 @@
 
 -- terminal
 hl.bind("SUPER + Return", hl.dsp.exec_cmd("foot"))
--- start menu / drun. Bare keysym: with a keysym the keys are no longer
--- treated as modifiers, so "SUPER + Super_L" would depend on press order.
+-- start menu / drun. SUPER must be held: a bare "SUPER_L" keysym fires on the
+-- way into every SUPER chord, so rofi would pop up on SUPER + Return etc.
 hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
 -- clipboard history
 hl.bind("SUPER + V", hl.dsp.exec_cmd(

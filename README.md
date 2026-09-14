@@ -48,9 +48,28 @@ and loginctl, just double check it's good...
 systemctl status systemd-logind
 ```
 
+### desktop shell
+
+the bits hyprland itself leans on. these are what `apply.sh` writes config for, so install
+them before running it.
+
+```
+pacman -S waybar swaync wallust cava playerctl pavucontrol nwg-look hypridle hyprlock wlogout
+```
+
+* waybar = the bar. config lives in `waybar/`, applied as a symlink to `configs/[TOP] Default`
+* swaync = notification centre (the bell in the bar)
+* wallust = generates `waybar/wallust/colors-waybar.css` from the wallpaper
+* cava = audio visualiser feeding the bar's `custom/cava_mviz` module
+* playerctl = media keys + the bar's now-playing module
+* pavucontrol = volume mixer, opened by right-clicking the audio group
+* nwg-look = gtk theme settings
+* hypridle / hyprlock = idle timeout and lock screen, config in `hypr/`
+* wlogout = the logout menu
+
 ### apps
 ``` 
-pacman -S yay vlc firefox code proton-vpn-gtk-app foot fuzzel cliphist rofi grim tesseract steam transmission
+pacman -S yay vlc firefox code proton-vpn-gtk-app foot fuzzel cliphist rofi grim slurp swappy wl-clipboard tesseract nautilus thunar mousepad steam transmission
 ```
 
 * yay = aur downloader
@@ -63,9 +82,18 @@ pacman -S yay vlc firefox code proton-vpn-gtk-app foot fuzzel cliphist rofi grim
 * cliphist = clipboard history thing that goes well with popup box thing
 * rofi = start menu
 * grim = screenshots
+* slurp = region picker, pipes into grim for snips
+* swappy = annotate a snip before saving it
+* wl-clipboard = `wl-copy`/`wl-paste`, needed by cliphist and the OCR keybind
 * tesseract = optical character recognition
+* nautilus = file manager (SUPER+E)
+* thunar = other file manager (SUPER+ALT+E)
+* mousepad = quick text editor (SUPER+ALT+C)
 * steam = gamer
 * transmission = linux isos
+
+`pacman-q` in this repo is a full `pacman -Q` snapshot of the host, kept for reference.
+`apply.sh` does not read or install from it.
 
 ### from yay
 * google-chrome = work web browser
