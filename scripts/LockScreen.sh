@@ -7,4 +7,6 @@ if pid=$(pidof hyprlock 2>/dev/null); then
     kill -STOP "$pid"
     trap 'kill -CONT "$pid" 2>/dev/null || true' EXIT
 fi
-hyprctl dispatch dpms off
+# Lua config: the dispatch payload is evaluated as Lua, so the legacy
+# `hyprctl dispatch dpms off` no longer parses. exec_raw takes the old text.
+hyprctl dispatch 'hl.dsp.exec_raw("dpms off")'

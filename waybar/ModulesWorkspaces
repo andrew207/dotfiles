@@ -12,9 +12,15 @@
 	"warp-on-scroll": false,
 	"sort-by-number": true,
 	"show-special": false,
-	"on-click": "activate",
-	"on-scroll-up": "hyprctl dispatch workspace e+1",
-	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	// No "on-click" here: hyprland/workspaces handles clicks inside waybar and
+	// ignores the key ("activate" is a sway/workspaces option). Waybar <= 0.15.0
+	// sends the legacy `dispatch workspace <id>`, which Hyprland's Lua config
+	// rejects as a syntax error, so clicking is a no-op until Arch ships a waybar
+	// newer than 0.15.0 (fixed upstream in e17c0d9). No config change needed then.
+	// Scrolling is ours to fix: under the Lua config the dispatch payload is
+	// evaluated as Lua, so legacy `hyprctl dispatch workspace e+1` cannot parse.
+	"on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+	"on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
 	"persistent-workspaces": {
 		"*": 5
 	  },
