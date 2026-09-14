@@ -149,7 +149,7 @@ apply_hyprland() {
     done
     # Helper scripts live at repo root but install under ~/.config/hypr/scripts,
     # which is the path keybinds.lua invokes them by.
-    for f in "$ROOT"/scripts/*.sh; do
+    for f in "$ROOT"/scripts/*.sh "$ROOT"/scripts/*.py; do
         copy_file "scripts/${f##*/}" 755 "$ROOT/scripts/${f##*/}"
     done
     [[ $reset_nullglob -eq 1 ]] && shopt -u nullglob

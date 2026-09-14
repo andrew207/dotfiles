@@ -17,8 +17,7 @@
 	"format": "{temperatureC}°C {icon}",
 	"format-icons": [
 		"󰈸"
-	],
-	"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --nvtop"
+	]
 },
 
 "clock": {
@@ -112,8 +111,7 @@
 	"format-alt": "{percentage}% 󰾆",
 	"format-alt-click": "click",
 	"tooltip": true,
-	"tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
-	"on-click-right": "$HOME/.config/hypr/scripts/WaybarScripts.sh --btop"
+	"tooltip-format": "{used:0.1f}GB/{total:0.1f}G"
 },
 
 "network#speed": {
