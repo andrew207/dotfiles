@@ -221,7 +221,6 @@ if pgrep -x waybar >/dev/null 2>&1; then
     fi
 fi
 log "note: foot/fuzzel changes only affect newly launched instances."
-log "note: pacman-q is a package manifest, not config; apply.sh does not install it."
 
 if [[ $DRY_RUN -eq 0 && $WRITTEN -gt 0 && -d "$BACKUP_DIR" ]]; then
     log "backups  $BACKUP_DIR"
