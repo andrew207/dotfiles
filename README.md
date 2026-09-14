@@ -1,7 +1,10 @@
 # dotfiles
-just my dotfiles to make reinstalling easier
+just my dotfiles to make reinstalling and updating easier
 
 also some post-install stuff
+
+this readme was written in early 2025, back when hyprland had .conf files (now lua). 
+also maybe printing is less terrible when you read this? here's hoping
 
 ### Network
 ```
