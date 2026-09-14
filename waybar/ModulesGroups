@@ -21,16 +21,6 @@
 		"custom/settings",
 	]
 },
-"group/motherboard": {
-	"orientation": "horizontal",
-	"modules": [
-		"cpu",
-		"power-profiles-daemon",
-		"memory",
-		"temperature",
-		"disk",
-	]
-},
 
 "group/mobo_drawer": {
 	"orientation": "inherit",
@@ -47,13 +37,7 @@
 		"disk",
 	]
 },
-"group/laptop": {
-	"orientation": "inherit",
-	"modules": [
-		"backlight",
-		"battery",
-	]
-},
+
 "group/audio": {
 	"orientation": "inherit",
 	"drawer": {
@@ -64,19 +48,6 @@
 	"modules": [
 		"pulseaudio",
 		"pulseaudio#microphone",
-	]
-},
-
-"group/connections": {
-	"orientation": "inherit",
-	"drawer": {
-		"transition-duration": 500,
-		"children-class": "bluetooth",
-		"transition-left-to-right": true
-        },
-	"modules": [
-		"network",
-		"bluetooth",
 	]
 },
 
@@ -94,6 +65,7 @@
 		"custom/keyboard",
 	]
 },
+
 "group/notify": {
 	"orientation": "inherit",
 	"drawer": {
@@ -105,35 +77,5 @@
 		"custom/swaync",
 		"custom/dot_update",
 	]
-},
-
-"group/power": {
-    "orientation": "inherit",
-    "drawer": {
-        "transition-duration": 500,
-        "children-class": "drawer-child",
-        "transition-left-to-right": false
-      },
-    "modules": [
-        "custom/power",
-        "custom/quit",
-        "custom/lock",
-        "custom/reboot"
-      ]
-},
-// groups for vertical
-"group/power#vert": {
-     "orientation": "inherit",
-     "drawer": {
-        "transition-duration": 300,
-        "children-class": "not-memory",
-        "transition-left-to-right": false
-       },
-     "modules": [
-        "custom/power",
-        "custom/lock",
-        "custom/logout",
-        "custom/reboot"
-      ]
 },
 }
