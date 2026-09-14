@@ -5,6 +5,9 @@ hl.on("hyprland.start", function()
     -- Core components (authentication, lock screen, notification daemon)
     hl.exec_cmd("gnome-keyring-daemon --start --components=secrets")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 || /usr/libexec/polkit-gnome-authentication-agent-1")
+    -- Notification daemon. waybar's custom/swaync module (group/notify) talks to
+    -- this; without it the bell renders but never shows anything.
+    hl.exec_cmd("swaync")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("dbus-update-activation-environment --all")
     hl.exec_cmd("hyprpm reload")
