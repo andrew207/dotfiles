@@ -74,7 +74,7 @@ copy_file() {
 
 apply_hyprland() {
     local files=(
-        hyprland.lua env.lua execs.lua general.lua colors.lua
+        hyprland.conf hyprland.lua env.lua execs.lua general.lua colors.lua
         rules.lua keybinds.lua monitors.lua
         hypridle.conf hyprlock.conf
     )
@@ -97,7 +97,6 @@ apply_hyprland() {
     [[ $reset_nullglob -eq 1 ]] && shopt -u nullglob
 
     # Legacy hyprlang layout -> backup dir (only if present).
-    backup_path hyprland.conf
     backup_path hyprland
     backup_path custom/env.conf
     backup_path custom/execs.conf
@@ -106,6 +105,8 @@ apply_hyprland() {
     backup_path custom/rules.conf
     backup_path monitors.conf
     backup_path workspaces.conf
+    backup_path shaders
+    backup_path custom/scripts/__restore_video_wallpaper.sh
     backup_path hyprland.conf.old
     backup_path hypridle.conf.new
     backup_path hyprlock.conf.new
